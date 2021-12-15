@@ -33,7 +33,7 @@ impl std::fmt::Display for Board {
             for entry in row {
                 write!(f, "{}", entry)?;
             }
-            writeln!(f, "")?;
+            writeln!(f)?;
         }
 
         Ok(())
@@ -70,9 +70,8 @@ impl Board {
     fn check_row(&self, idx: usize) -> bool {
         if let Some(row) = self.rows.get(idx) {
             for entry in row {
-                match entry {
-                    Unchosen(_) => return false,
-                    _ => {}
+                if let Unchosen(_) = entry {
+                    return false;
                 }
             }
 
@@ -120,10 +119,8 @@ impl Board {
         let win = if let Some((row, col)) = found {
             if self.check_col(col) {
                 true
-            } else if self.check_row(row) {
-                true
             } else {
-                false
+                self.check_row(row)
             }
         } else {
             false
@@ -157,7 +154,7 @@ fn main() -> Result<()> {
     let mut board = Board::new();
 
     for line in lines {
-        if line == "" {
+        if line.is_empty() {
             if board.is_set() {
                 boards.push(board);
                 board = Board::new();
