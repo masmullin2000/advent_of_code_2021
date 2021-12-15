@@ -41,7 +41,7 @@ impl Direction {
         let rc = match sp[0] {
             "forward" => Forward(v),
             "down" => Down(v),
-            "up" => Down(v * -1),
+            "up" => Down(-v),
             _ => return Err(NoDir),
         };
 

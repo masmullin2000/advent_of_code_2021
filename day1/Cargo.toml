@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "p1"
+name = "d1_p1"
 path = "src/part1.rs"
 
 [[bin]]
-name = "p2"
+name = "d1_p2"
 path = "src/part2.rs"
 
 [dependencies]
